@@ -1,0 +1,59 @@
+﻿using Exps.Common.Context;
+using Exps.Core.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace Exps.Core.Context
+{
+    public class CoreEntityConfiguration : IEntityConfiguration
+    {
+        public void AddConfiguration(ModelBuilder modelBuilder)
+        {
+            //Contragents
+            modelBuilder.Entity<ContragentModel>()
+                .ToTable("Contragent")
+                .HasKey(x => x.ContragentId)
+                .HasName("PK_ContragentId");
+
+            modelBuilder.Entity<ContragentModel>()
+                .HasMany(x => x.JournalRows)
+                .WithOne(x => x.Contragent);
+
+            //Participants
+            modelBuilder.Entity<ParticipantModel>()
+                .ToTable("Participant")
+                .HasKey(x => x.ParticipantId)
+                .HasName("PK_ParticipantId");
+
+            modelBuilder.Entity<ParticipantModel>()
+                .HasMany(x => x.JournalRows)
+                .WithOne(x => x.Participant);
+
+            //ExpenseTypes
+            modelBuilder.Entity<ExpenseTypeModel>()
+                .ToTable("ExpenseType")
+                .HasKey(x => x.ExpenseTypeId)
+                .HasName("PK_ExpenseTypeId");
+
+            modelBuilder.Entity<ExpenseTypeModel>()
+                .HasMany(x => x.Expenses)
+                .WithOne(x => x.ExpenseType);
+
+            //Expenses
+            modelBuilder.Entity<ExpenseModel>()
+                .ToTable("Expense")
+                .HasKey(x => x.ExpenseId)
+                .HasName("PK_ExpenseId");
+
+            modelBuilder.Entity<ExpenseModel>()
+                .HasMany(x => x.JournalRows)
+                .WithOne(x => x.Expense);
+
+            //Journal
+            modelBuilder.Entity<JournalModel>()
+                .ToTable("Journal")
+                .HasKey(x => x.JournalId)
+                .HasName("PK_JournalId");
+
+        }
+    }
+}
