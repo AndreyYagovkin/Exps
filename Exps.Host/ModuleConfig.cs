@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Exps.Common;
 using Exps.Core;
+using Microsoft.EntityFrameworkCore;
 
 namespace Exps.Host
 {
@@ -8,6 +9,9 @@ namespace Exps.Host
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<ExpsContext>().As<IDataContext>().As<DbContext>()
+                .InstancePerLifetimeScope();
+
             builder.RegisterModule<CommonModule>();
             builder.RegisterModule<CoreModule>();
         }

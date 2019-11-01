@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace Exps.Core.Models
 {
@@ -14,12 +13,7 @@ namespace Exps.Core.Models
         public int? ExpenseId { get; set; }
         public ExpenseModel Expense { get; set; }
 
-        public int? ContragentId { get; set; }
-        public ContragentModel Contragent { get; set; }
-
-        public int? ParticipantId { get; set; }
-        public ParticipantModel Participant { get; set; }
-
+        public string Comment { get; set; }
 
     }
 }

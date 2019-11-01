@@ -8,26 +8,6 @@ namespace Exps.Core.Context
     {
         public void AddConfiguration(ModelBuilder modelBuilder)
         {
-            //Contragents
-            modelBuilder.Entity<ContragentModel>()
-                .ToTable("Contragent")
-                .HasKey(x => x.ContragentId)
-                .HasName("PK_ContragentId");
-
-            modelBuilder.Entity<ContragentModel>()
-                .HasMany(x => x.JournalRows)
-                .WithOne(x => x.Contragent);
-
-            //Participants
-            modelBuilder.Entity<ParticipantModel>()
-                .ToTable("Participant")
-                .HasKey(x => x.ParticipantId)
-                .HasName("PK_ParticipantId");
-
-            modelBuilder.Entity<ParticipantModel>()
-                .HasMany(x => x.JournalRows)
-                .WithOne(x => x.Participant);
-
             //ExpenseTypes
             modelBuilder.Entity<ExpenseTypeModel>()
                 .ToTable("ExpenseType")

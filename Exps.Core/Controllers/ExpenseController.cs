@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Exps.Commands;
+﻿using Exps.Commands;
 using Exps.Common;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Exps.Controllers
+namespace Exps.Core.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -16,14 +15,10 @@ namespace Exps.Controllers
             _dispatcher = dispatcher;
         }
 
-        [HttpGet]
-        [Route("one")]
-        public void AddExpense()
+        [HttpPost]
+        [Route("AddExpense")]
+        public void AddExpense(ExpenseCreateCommand command)
         {
-            var command = new CreateExpenseCommand
-            {
-                Name = "test"
-            };
             _dispatcher.Handle(command);
         }
     }

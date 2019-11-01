@@ -9,7 +9,7 @@ namespace Exps.Common
             builder.Register(c => new Dispatcher(c.Resolve<IComponentContext>()))
                 .As<IDispatcher>()
                 .InstancePerLifetimeScope();
-            
+
             RegisterAll(builder);
         }
     }

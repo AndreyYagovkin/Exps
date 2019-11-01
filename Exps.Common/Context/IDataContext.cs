@@ -11,6 +11,15 @@ namespace Exps.Common
     public interface IDataContext : IDisposable
     {
         EntityEntry<TEntity> Add<TEntity>(TEntity entity) where TEntity : class;
+
+        TEntity Update<TEntity>(TEntity entity) where TEntity : class;
+        EntityEntry<TEntity> Delete<TEntity>(TEntity entity) where TEntity : class;
+
+        
+
+        IQueryable<TEntity> Query<TEntity>() where TEntity : class;
+
+
         //IEnumerable<TEntity> AddRange<TEntity>(IEnumerable<TEntity> entity) where TEntity : class;
         //TEntity Remove<TEntity>(TEntity entity) where TEntity : class;
         //IEnumerable<TEntity> RemoveRange<TEntity>(IEnumerable<TEntity> entity) where TEntity : class;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -11,6 +12,21 @@ namespace Exps.Common
         public DataContext(DbContextOptions options) : base(options)
         {
             
+        }
+        public TEntity Update<TEntity>(TEntity entity) where TEntity : class
+        {
+            Entry(entity).State = EntityState.Modified;
+            return entity;
+        }
+
+        public EntityEntry<TEntity> Delete<TEntity>(TEntity entity) where TEntity : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public new IQueryable<TEntity> Query<TEntity>() where TEntity : class
+        {
+            return Set<TEntity>();
         }
 
         //public override EntityEntry<TEntity> Add<TEntity>(TEntity entity)
