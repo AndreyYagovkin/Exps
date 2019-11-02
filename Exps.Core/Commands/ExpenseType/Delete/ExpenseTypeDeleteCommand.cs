@@ -4,6 +4,6 @@ namespace Exps.Core.Commands
 {
     public class ExpenseTypeDeleteCommand
     {
-        public List<int> ExpenseIds { get; set; }
+        public int ExpenseTypeId { get; set; }
     }
 }

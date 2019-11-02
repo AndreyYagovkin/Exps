@@ -3,9 +3,9 @@ using Exps.Core.Models;
 
 namespace Exps.Core.Commands
 {
-    public class ExpenseTypeUpdateCommandHandler : HandlerCreateBase<ExpenseTypeModel, ExpenseTypeCreateCommand>
+    public class ExpenseTypeCreateCommandHandler : HandlerCreateBase<ExpenseTypeModel, ExpenseTypeCreateCommand>
     {
-        public ExpenseTypeUpdateCommandHandler(IDataContext context) : base(context)
+        public ExpenseTypeCreateCommandHandler(IDataContext context) : base(context)
         {
         }
 
@@ -13,7 +13,7 @@ namespace Exps.Core.Commands
         {
             return new ExpenseTypeModel()
             {
-                Name = command.ExpenseName
+                Name = command.ExpenseTypeName
             };
         }
     }

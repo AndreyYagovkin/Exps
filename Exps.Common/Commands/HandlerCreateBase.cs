@@ -3,7 +3,7 @@
     public abstract class HandlerCreateBase<TModel, TCommand> : IHandlerCommand<TCommand>
         where TModel : class
     {
-        private readonly IDataContext _context;
+        protected readonly IDataContext _context;
 
         public HandlerCreateBase(IDataContext context)
         {

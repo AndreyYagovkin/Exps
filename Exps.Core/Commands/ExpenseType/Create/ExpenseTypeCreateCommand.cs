@@ -2,6 +2,6 @@
 {
     public class ExpenseTypeCreateCommand
     {
-        public string ExpenseName { get; set; }
+        public string ExpenseTypeName { get; set; }
     }
 }

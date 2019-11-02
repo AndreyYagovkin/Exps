@@ -3,7 +3,7 @@
     public abstract class HandlerDeleteBase<TModel, TCommand> : IHandlerCommand<TCommand>
         where TModel : class
     {
-        private readonly IDataContext _context;
+        protected readonly IDataContext _context;
 
         public HandlerDeleteBase(IDataContext context)
         {
@@ -14,7 +14,7 @@
         {
             var model = FindModel(command);
 
-            _context.Delete(model);
+            _context.Remove(model);
             _context.SaveChanges();
         }
 

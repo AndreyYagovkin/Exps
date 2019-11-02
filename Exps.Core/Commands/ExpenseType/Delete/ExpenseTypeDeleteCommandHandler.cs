@@ -4,19 +4,15 @@ using Exps.Core.Models;
 
 namespace Exps.Core.Commands
 {
-    public class ExpenseTypeDeleteCommandHandler : HandlerDeleteBase<ExpenseTypeModel, ExpenseTypeUpdateCommand>
+    public class ExpenseTypeDeleteCommandHandler : HandlerDeleteBase<ExpenseTypeModel, ExpenseTypeDeleteCommand>
     {
         public ExpenseTypeDeleteCommandHandler(IDataContext context) : base(context)
         {
         }
 
-        public void Execute(ExpenseTypeUpdateCommand command)
+        public override ExpenseTypeModel FindModel(ExpenseTypeDeleteCommand command)
         {
-            var deletingEntities = _context.Query<ExpenseTypeModel>()
-                .Where(x => command.ExpenseIds.Contains(x.ExpenseTypeId));
-
-            _context.Delete(deletingEntities);
-            _context.SaveChanges();
+            return _context.Find<ExpenseTypeModel>(a => a.ExpenseTypeId == command.ExpenseTypeId);
         }
     }
 }

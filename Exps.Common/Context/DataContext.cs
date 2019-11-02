@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -19,14 +20,19 @@ namespace Exps.Common
             return entity;
         }
 
-        public EntityEntry<TEntity> Delete<TEntity>(TEntity entity) where TEntity : class
+        public EntityEntry<TEntity> Remove<TEntity>(TEntity entity) where TEntity : class
         {
-            throw new NotImplementedException();
+            return Set<TEntity>().Remove(entity);
         }
 
         public new IQueryable<TEntity> Query<TEntity>() where TEntity : class
         {
             return Set<TEntity>();
+        }
+
+        public TEntity Find<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
+        {
+            return Set<TEntity>().FirstOrDefault(predicate);
         }
 
         //public override EntityEntry<TEntity> Add<TEntity>(TEntity entity)

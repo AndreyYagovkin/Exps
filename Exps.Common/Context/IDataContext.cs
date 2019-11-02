@@ -13,11 +13,13 @@ namespace Exps.Common
         EntityEntry<TEntity> Add<TEntity>(TEntity entity) where TEntity : class;
 
         TEntity Update<TEntity>(TEntity entity) where TEntity : class;
-        EntityEntry<TEntity> Delete<TEntity>(TEntity entity) where TEntity : class;
+        EntityEntry<TEntity> Remove<TEntity>(TEntity entity) where TEntity : class;
 
         
 
         IQueryable<TEntity> Query<TEntity>() where TEntity : class;
+
+        TEntity Find<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class;
 
 
         //IEnumerable<TEntity> AddRange<TEntity>(IEnumerable<TEntity> entity) where TEntity : class;

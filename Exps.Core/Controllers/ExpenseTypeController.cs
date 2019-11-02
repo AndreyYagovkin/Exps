@@ -31,7 +31,7 @@ namespace Exps.Core.Controllers
 
         [HttpPost]
         [Route("Delete")]
-        public void AddExpense(ExpenseTypeUpdateCommand command)
+        public void AddExpense(ExpenseTypeDeleteCommand command)
         {
             _dispatcher.Handle(command);
         }

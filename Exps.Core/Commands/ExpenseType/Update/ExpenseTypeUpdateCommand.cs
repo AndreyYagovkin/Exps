@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace Exps.Core.Commands
+﻿namespace Exps.Core.Commands
 {
     public class ExpenseTypeUpdateCommand
     {
-        public int ExpenseId { get; set; }
+        public int ExpenseTypeId { get; set; }
+        public string ExpenseTypeName { get; set; }
     }
 }
