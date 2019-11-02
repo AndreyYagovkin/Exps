@@ -16,8 +16,22 @@ namespace Exps.Core.Controllers
         }
 
         [HttpPost]
-        [Route("AddExpense")]
-        public void AddExpense(ExpenseCreateCommand command)
+        [Route("Create")]
+        public void Create(ExpenseCreateCommand command)
+        {
+            _dispatcher.Handle(command);
+        }
+
+        [HttpPost]
+        [Route("Update")]
+        public void Update(ExpenseUpdateCommand command)
+        {
+            _dispatcher.Handle(command);
+        }
+
+        [HttpPost]
+        [Route("Delete")]
+        public void Delete(ExpenseDeleteCommand command)
         {
             _dispatcher.Handle(command);
         }
