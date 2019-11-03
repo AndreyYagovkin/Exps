@@ -1,6 +1,6 @@
 ﻿using Exps.Common.Context;
 
-namespace Exps.Common.Handlers
+namespace Exps.Common.Commands
 {
     public abstract class HandlerDeleteBase<TModel, TCommand> : IHandlerCommand<TCommand>
         where TModel : class

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using Exps.Common.Exceptions;
-using Exps.Common.Handlers;
+using Exps.Common.Commands;
 
 namespace Exps.Common.Dispatcher
 {

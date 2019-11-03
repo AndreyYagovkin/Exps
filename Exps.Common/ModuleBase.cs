@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Exps.Common.Handlers;
+using Exps.Common.Commands;
 
 namespace Exps.Common
 {
