@@ -1,3 +1,4 @@
 # Exps
 A project for maintaining information about personal expenses, controlling the flow of your funds and budget planning.
-Base on: Windows IIS, WebAPI 2.0, DotNetCore 3.0 
+
+Based on: WebAPI 2.0 and DotNetCore 3.0 
