@@ -1,4 +1,4 @@
-﻿namespace Exps.Common
+﻿namespace Exps.Common.Dispatcher
 {
     public interface IDispatcher
     {

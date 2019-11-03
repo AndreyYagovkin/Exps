@@ -1,4 +1,6 @@
-﻿namespace Exps.Common
+﻿using Exps.Common.Context;
+
+namespace Exps.Common.Handlers
 {
     public abstract class HandlerUpdateBase<TModel, TCommand> : IHandlerCommand<TCommand>
         where TModel : class

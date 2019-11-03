@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Autofac;
+using Exps.Common.Exceptions;
+using Exps.Common.Handlers;
 
-namespace Exps.Common
+namespace Exps.Common.Dispatcher
 {
     public class Dispatcher : IDispatcher
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Exps.Common
+namespace Exps.Common.Exceptions
 {
     public class HandlerNotFoundException : Exception
     {

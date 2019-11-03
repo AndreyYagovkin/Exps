@@ -6,32 +6,32 @@ namespace Exps.Core.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ExpenseController : ControllerBase
+    public class JournalController: ControllerBase
     {
         private readonly IDispatcher _dispatcher;
 
-        public ExpenseController(IDispatcher dispatcher)
+        public JournalController(IDispatcher dispatcher)
         {
             _dispatcher = dispatcher;
         }
-
+        
         [HttpPost]
         [Route("Create")]
-        public void Create(ExpenseCreateCommand command)
+        public void Create(JournalCreateCommand command)
         {
             _dispatcher.Handle(command);
         }
 
         [HttpPost]
         [Route("Update")]
-        public void Update(ExpenseUpdateCommand command)
+        public void Update(JournalUpdateCommand command)
         {
             _dispatcher.Handle(command);
         }
 
         [HttpPost]
         [Route("Delete")]
-        public void Delete(ExpenseDeleteCommand command)
+        public void Delete(JournalDeleteCommand command)
         {
             _dispatcher.Handle(command);
         }

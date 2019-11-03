@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Exps.Common.Handlers;
 
 namespace Exps.Common
 {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Exps.Core.Commands
+﻿namespace Exps.Core.Commands
 {
     public class ExpenseTypeDeleteCommand
     {

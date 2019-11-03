@@ -1,7 +1,8 @@
-﻿using Exps.Common;
+﻿using Exps.Common.Context;
+using Exps.Common.Handlers;
 using Exps.Core.Models;
 
-namespace Exps.Commands
+namespace Exps.Core.Commands
 {
     public class ExpenseCreateCommandHandler : HandlerCreateBase<ExpenseModel, ExpenseCreateCommand>
     {

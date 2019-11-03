@@ -6,7 +6,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace Exps.Common
+namespace Exps.Common.Context
 {
     public class DataContext : DbContext, IDataContext
     {
@@ -14,13 +14,13 @@ namespace Exps.Common
         {
             
         }
-        public TEntity Update<TEntity>(TEntity entity) where TEntity : class
+        public new TEntity Update<TEntity>(TEntity entity) where TEntity : class
         {
             Entry(entity).State = EntityState.Modified;
             return entity;
         }
 
-        public EntityEntry<TEntity> Remove<TEntity>(TEntity entity) where TEntity : class
+        public new EntityEntry<TEntity> Remove<TEntity>(TEntity entity) where TEntity : class
         {
             return Set<TEntity>().Remove(entity);
         }
@@ -89,7 +89,7 @@ namespace Exps.Common
         // }
 
         // This code added to correctly implement the disposable pattern.
-        public void Dispose()
+        public new void Dispose()
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(true);

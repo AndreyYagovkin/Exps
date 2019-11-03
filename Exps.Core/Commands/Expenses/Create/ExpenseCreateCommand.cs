@@ -1,4 +1,4 @@
-﻿namespace Exps.Commands
+﻿namespace Exps.Core.Commands
 {
     public class ExpenseCreateCommand
     {

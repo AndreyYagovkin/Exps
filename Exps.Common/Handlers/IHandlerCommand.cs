@@ -1,4 +1,4 @@
-﻿namespace Exps.Common
+﻿namespace Exps.Common.Handlers
 {
     public interface IHandlerCommand<TCommand>
     {

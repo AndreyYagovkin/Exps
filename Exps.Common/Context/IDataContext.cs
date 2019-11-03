@@ -6,7 +6,7 @@ using System.Transactions;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 
-namespace Exps.Common
+namespace Exps.Common.Context
 {           
     public interface IDataContext : IDisposable
     {

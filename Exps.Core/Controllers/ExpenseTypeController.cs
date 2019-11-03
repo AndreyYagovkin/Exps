@@ -1,4 +1,4 @@
-﻿using Exps.Common;
+﻿using Exps.Common.Dispatcher;
 using Exps.Core.Commands;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,21 +17,21 @@ namespace Exps.Core.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public void ExpenseTypeCreate(ExpenseTypeCreateCommand command)
+        public void Create(ExpenseTypeCreateCommand command)
         {
             _dispatcher.Handle(command);
         }
 
         [HttpPost]
         [Route("Update")]
-        public void ExpenseTypeUpdate(ExpenseTypeUpdateCommand command)
+        public void Update(ExpenseTypeUpdateCommand command)
         {
             _dispatcher.Handle(command);
         }
 
         [HttpPost]
         [Route("Delete")]
-        public void AddExpense(ExpenseTypeDeleteCommand command)
+        public void Delete(ExpenseTypeDeleteCommand command)
         {
             _dispatcher.Handle(command);
         }
