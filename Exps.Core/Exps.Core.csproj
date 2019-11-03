@@ -13,4 +13,9 @@
     <ProjectReference Include="..\Exps.Common\Exps.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Queries\Expense" />
+    <Folder Include="Queries\Journal" />
+  </ItemGroup>
+
 </Project>
