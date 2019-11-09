@@ -4,6 +4,7 @@ using System.Linq;
 using Autofac;
 using Exps.Common.Exceptions;
 using Exps.Common.Commands;
+using Exps.Common.Queries;
 
 namespace Exps.Common.Dispatcher
 {
@@ -24,6 +25,16 @@ namespace Exps.Common.Dispatcher
                 throw new Exception($"Handler for command {typeof(TCommand)} not found.");
 
             handler.Execute(command);
+        }
+        
+        public IQueryable<TModel> HandleQuery<TModel>()
+        {
+            var query = Resolve<IQuery<TModel>>();
+            
+            if (query == null)
+                throw new Exception($"Handler for query {typeof(TModel)} not found.");
+            
+            return query.Execute();
         }
 
         private TType Resolve<TType>(ILifetimeScope scope = null) where TType : class

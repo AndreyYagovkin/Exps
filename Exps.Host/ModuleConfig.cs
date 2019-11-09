@@ -1,4 +1,7 @@
-﻿using Autofac;
+﻿using System.Collections.Generic;
+using System.Reflection;
+using Autofac;
+using AutoMapper;
 using Exps.Common;
 using Exps.Common.Context;
 using Exps.Core;
@@ -15,6 +18,7 @@ namespace Exps.Host
 
             builder.RegisterModule<CommonModule>();
             builder.RegisterModule<CoreModule>();
+
         }
     }
 }

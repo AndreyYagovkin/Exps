@@ -1,6 +1,10 @@
+using System;
+using System.Linq;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using Exps.Core.Models;
+using Exps.Core.Views;
 using Exps.Host;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,7 +31,6 @@ namespace Exps.Host
             services.AddEntityFrameworkNpgsql().AddDbContext<ExpsContext>(opt =>
                 opt.UseNpgsql(Configuration.GetConnectionString("ExpsWebApiConection"))
             );
-
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -49,8 +52,6 @@ namespace Exps.Host
             {
                 endpoints.MapControllers();
             });
-
-
         }
     }
 }

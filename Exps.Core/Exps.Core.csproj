@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.0.0" />
   </ItemGroup>
@@ -16,6 +17,12 @@
   <ItemGroup>
     <Folder Include="Queries\Expense" />
     <Folder Include="Queries\Journal" />
+    <Folder Include="Views\Expense" />
+    <Folder Include="Views\Journal" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Queries\ExpenseType\ExpenseTypeQuery.cs" />
   </ItemGroup>
 
 </Project>

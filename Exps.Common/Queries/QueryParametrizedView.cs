@@ -5,13 +5,13 @@ using Exps.Common.Context;
 
 namespace Exps.Common.Queries
 {
-    public class QueryParametrizedBase<TModel, TParams, TViewModel> 
-        : QueryParametrized<TParams, TViewModel>, IQueryParametrizedBasic<TModel, TParams, TViewModel> 
+    public class QueryParametrizedBasic<TModel, TParams, TViewModel> 
+        : QueryParametrized<TParams, TViewModel>, IQueryParametrizedView<TModel, TParams, TViewModel> 
         where TModel : class
     {
         private readonly IConfigurationProvider _mapperConfig;
         
-        public QueryParametrizedBase(IDataContext context, 
+        public QueryParametrizedBasic(IDataContext context, 
             IConfigurationProvider mapperConfig) : base(context)
         {
             _mapperConfig = mapperConfig;

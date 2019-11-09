@@ -2,8 +2,7 @@
 
 namespace Exps.Common.Queries
 {
-    public interface IQueryParametrizedBasic<TModel, TParams, TViewModel>
-        : IQueryParametrized<TParams, TViewModel>
+    public interface IQueryParametrizedView<TModel, TParams, TViewModel> : IQueryParametrized<TParams, TViewModel>
         where TModel : class
         
     {
