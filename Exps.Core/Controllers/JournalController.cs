@@ -1,5 +1,7 @@
-﻿using Exps.Common.Dispatcher;
+﻿using System.Linq;
+using Exps.Common.Dispatcher;
 using Exps.Core.Commands;
+using Exps.Core.Views;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exps.Core.Controllers
@@ -13,6 +15,11 @@ namespace Exps.Core.Controllers
         public JournalController(IDispatcher dispatcher)
         {
             _dispatcher = dispatcher;
+        }
+        
+        public IQueryable<JournalView> Get()
+        {
+            return _dispatcher.HandleQuery<JournalView>();
         }
         
         [HttpPost]

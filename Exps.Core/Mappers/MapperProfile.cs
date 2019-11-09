@@ -8,7 +8,9 @@ namespace Exps.Core
     {
         public MapperProfile()
         {
-            CreateMap<ExpenseModel, ExpenseTypeView>();
+            CreateMap<ExpenseTypeModel, ExpenseTypeView>();
+            CreateMap<ExpenseModel, ExpenseView>();
+            CreateMap<JournalModel, JournalView>();
         }
     }
 }

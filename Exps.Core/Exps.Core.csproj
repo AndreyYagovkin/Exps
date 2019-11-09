@@ -15,9 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\Expense" />
-    <Folder Include="Queries\Journal" />
-    <Folder Include="Views\Expense" />
     <Folder Include="Views\Journal" />
   </ItemGroup>
 

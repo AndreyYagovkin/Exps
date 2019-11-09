@@ -6,9 +6,9 @@ using Exps.Core.Views;
 
 namespace Exps.Core.Queries
 {
-    public class ExpenseTypeQuery : QueryBase<ExpenseTypeModel, ExpenseTypeView>
+    public class ExpenseQuery : QueryBase<ExpenseModel, ExpenseView>
     {
-        public ExpenseTypeQuery(IDataContext context,
+        public ExpenseQuery(IDataContext context,
             IMapper mapper) 
             : base(context, mapper)
         {
