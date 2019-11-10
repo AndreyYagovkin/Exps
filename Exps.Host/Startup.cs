@@ -27,6 +27,7 @@ namespace Exps.Host
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
             services.AddEntityFrameworkNpgsql().AddDbContext<ExpsContext>(opt =>
                 opt.UseNpgsql(Configuration.GetConnectionString("ExpsWebApiConection"))
@@ -40,8 +41,8 @@ namespace Exps.Host
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(builder => builder.AllowAnyOrigin());
             this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -52,6 +53,9 @@ namespace Exps.Host
             {
                 endpoints.MapControllers();
             });
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            
         }
     }
 }
