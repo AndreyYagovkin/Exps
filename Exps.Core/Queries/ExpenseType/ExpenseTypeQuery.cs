@@ -8,9 +8,9 @@ namespace Exps.Core.Queries
 {
     public class ExpenseTypeQuery : QueryBase<ExpenseTypeModel, ExpenseTypeView>
     {
-        public ExpenseTypeQuery(IDataContext context, 
-            IConfigurationProvider mapperConfig) 
-        : base(context, mapperConfig)
+        public ExpenseTypeQuery(IDataContext context,
+            IMapper mapper) 
+            : base(context, mapper)
         {
         }
     }

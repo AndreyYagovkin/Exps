@@ -3,6 +3,6 @@
     public class ExpenseTypeView
     {
         public int ExpenseTypeId { get; set; }
-        public string Name { get; set; }
+        public string ExpenseTypeName { get; set; }
     }
 }

@@ -1,11 +1,5 @@
-using System;
-using System.Linq;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using AutoMapper;
-using Exps.Core.Models;
-using Exps.Core.Views;
-using Exps.Host;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -41,8 +35,12 @@ namespace Exps.Host
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseCors(
+                options => options.WithOrigins("http://localhost:4200").AllowAnyMethod()
+            );
+            
             this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -55,6 +53,8 @@ namespace Exps.Host
             });
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            
+            
             
         }
     }
