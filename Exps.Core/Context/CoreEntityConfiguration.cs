@@ -11,28 +11,28 @@ namespace Exps.Core.Context
             //ExpenseTypes
             modelBuilder.Entity<ExpenseTypeModel>()
                 .ToTable("ExpenseType")
-                .HasKey(x => x.ExpenseTypeId)
+                .HasKey(x => x.Id)
                 .HasName("PK_ExpenseTypeId");
 
             modelBuilder.Entity<ExpenseTypeModel>()
-                .HasMany(x => x.Expenses)
+                .HasMany(x => x.ExpenseGroups)
                 .WithOne(x => x.ExpenseType);
 
-            //Expenses
-            modelBuilder.Entity<ExpenseModel>()
-                .ToTable("Expense")
-                .HasKey(x => x.ExpenseId)
-                .HasName("PK_ExpenseId");
+            //ExpenseGroups
+            modelBuilder.Entity<ExpenseGroupModel>()
+                .ToTable("ExpenseGroup")
+                .HasKey(x => x.Id)
+                .HasName("PK_ExpenseGroupId");
 
-            modelBuilder.Entity<ExpenseModel>()
-                .HasMany(x => x.JournalRows)
-                .WithOne(x => x.Expense);
+            modelBuilder.Entity<ExpenseGroupModel>()
+                .HasMany(x => x.ExpenseJournalRows)
+                .WithOne(x => x.ExpenseGroup);
 
-            //Journal
-            modelBuilder.Entity<JournalModel>()
-                .ToTable("Journal")
-                .HasKey(x => x.JournalId)
-                .HasName("PK_JournalId");
+            //ExpenseJournal
+            modelBuilder.Entity<ExpenseJournalModel>()
+                .ToTable("ExpenseJournal")
+                .HasKey(x => x.Id)
+                .HasName("PK_ExpenseJournalId");
 
         }
     }

@@ -1,10 +1,11 @@
 ﻿namespace Exps.Core.Views
 {
-    public class ExpenseView
+    public class ExpenseGroupView
     {
-        public int ExpenseId { get; set; }
-        public string Name { get; set; }
-        public int? ParentId { get; set; }
-        public int ExpenseTypeId { get; set; }
+        public int ExpenseGroupId { get; set; }
+        public int ExpenseGroupLevel { get; set; }
+        public string ExpenseGroupName { get; set; }
+        public string ExpenseGroupParentName { get; set; }
+        public string ExpenseGroupTypeName { get; set; }
     }
 }

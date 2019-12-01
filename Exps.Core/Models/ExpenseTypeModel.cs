@@ -2,11 +2,8 @@
 
 namespace Exps.Core.Models
 {
-    public class ExpenseTypeModel
+    public class ExpenseTypeModel : ClassifierBaseModel
     {
-        public int ExpenseTypeId { get; set; }
-        public string Name { get; set; }
-
-        public List<ExpenseModel> Expenses { get; set; }
+        public List<ExpenseGroupModel> ExpenseGroups { get; set; }
     }
 }

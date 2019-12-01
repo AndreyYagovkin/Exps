@@ -10,8 +10,7 @@ namespace Exps.Core
         {
             CreateMap<ExpenseTypeModel, ExpenseTypeView>()
                 .ForMember(x => x.ExpenseTypeName, s => s.MapFrom(x => x.Name));
-            CreateMap<ExpenseModel, ExpenseView>();
-            CreateMap<JournalModel, JournalView>();
+            CreateMap<ExpenseJournalModel, JournalView>();
         }
     }
 }

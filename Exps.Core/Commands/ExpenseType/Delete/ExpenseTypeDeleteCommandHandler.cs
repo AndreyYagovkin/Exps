@@ -12,7 +12,7 @@ namespace Exps.Core.Commands
 
         public override ExpenseTypeModel FindModel(ExpenseTypeDeleteCommand command)
         {
-            return _context.Find<ExpenseTypeModel>(a => a.ExpenseTypeId == command.ExpenseTypeId);
+            return _context.Find<ExpenseTypeModel>(a => a.Id == command.ExpenseTypeId);
         }
     }
 }

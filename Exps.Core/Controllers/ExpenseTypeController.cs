@@ -8,11 +8,11 @@ namespace Exps.Core.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ExpenseTypeController : ControllerBase
+    public class ExpenseTypesController : ControllerBase
     {
         private readonly IDispatcher _dispatcher;
         
-        public ExpenseTypeController(IDispatcher dispatcher)
+        public ExpenseTypesController(IDispatcher dispatcher)
         {
             _dispatcher = dispatcher;
         }
@@ -23,21 +23,18 @@ namespace Exps.Core.Controllers
         }
 
         [HttpPost]
-        //[Route("Create")]
         public void Create(ExpenseTypeCreateCommand command)
         {
             _dispatcher.Handle(command);
         }
 
         [HttpPut]
-        //[Route("Update")]
         public void Update(ExpenseTypeUpdateCommand command)
         {
             _dispatcher.Handle(command);
         }
 
         [HttpDelete]
-        //[Route("Delete")]
         public void Delete(ExpenseTypeDeleteCommand command)
         {
             _dispatcher.Handle(command);

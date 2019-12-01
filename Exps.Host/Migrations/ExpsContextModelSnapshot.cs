@@ -19,9 +19,9 @@ namespace Exps.Host.Migrations
                 .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("Exps.Core.Models.ExpenseModel", b =>
+            modelBuilder.Entity("Exps.Core.Models.ExpenseGroupModel", b =>
                 {
-                    b.Property<int>("ExpenseId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -35,33 +35,17 @@ namespace Exps.Host.Migrations
                     b.Property<int?>("ParentId")
                         .HasColumnType("integer");
 
-                    b.HasKey("ExpenseId")
-                        .HasName("PK_ExpenseId");
+                    b.HasKey("Id")
+                        .HasName("PK_ExpenseGroupId");
 
                     b.HasIndex("ExpenseTypeId");
 
-                    b.ToTable("Expense");
+                    b.ToTable("ExpenseGroup");
                 });
 
-            modelBuilder.Entity("Exps.Core.Models.ExpenseTypeModel", b =>
+            modelBuilder.Entity("Exps.Core.Models.ExpenseJournalModel", b =>
                 {
-                    b.Property<int>("ExpenseTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("ExpenseTypeId")
-                        .HasName("PK_ExpenseTypeId");
-
-                    b.ToTable("ExpenseType");
-                });
-
-            modelBuilder.Entity("Exps.Core.Models.JournalModel", b =>
-                {
-                    b.Property<int>("JournalId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -72,34 +56,50 @@ namespace Exps.Host.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int?>("ExpenseId")
+                    b.Property<int?>("ExpenseGroupId")
                         .HasColumnType("integer");
 
                     b.Property<decimal>("Sum")
                         .HasColumnType("numeric");
 
-                    b.HasKey("JournalId")
-                        .HasName("PK_JournalId");
+                    b.HasKey("Id")
+                        .HasName("PK_ExpenseJournalId");
 
-                    b.HasIndex("ExpenseId");
+                    b.HasIndex("ExpenseGroupId");
 
-                    b.ToTable("Journal");
+                    b.ToTable("ExpenseJournal");
                 });
 
-            modelBuilder.Entity("Exps.Core.Models.ExpenseModel", b =>
+            modelBuilder.Entity("Exps.Core.Models.ExpenseTypeModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id")
+                        .HasName("PK_ExpenseTypeId");
+
+                    b.ToTable("ExpenseType");
+                });
+
+            modelBuilder.Entity("Exps.Core.Models.ExpenseGroupModel", b =>
                 {
                     b.HasOne("Exps.Core.Models.ExpenseTypeModel", "ExpenseType")
-                        .WithMany("Expenses")
+                        .WithMany("ExpenseGroups")
                         .HasForeignKey("ExpenseTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Exps.Core.Models.JournalModel", b =>
+            modelBuilder.Entity("Exps.Core.Models.ExpenseJournalModel", b =>
                 {
-                    b.HasOne("Exps.Core.Models.ExpenseModel", "Expense")
-                        .WithMany("JournalRows")
-                        .HasForeignKey("ExpenseId");
+                    b.HasOne("Exps.Core.Models.ExpenseGroupModel", "ExpenseGroup")
+                        .WithMany("ExpenseJournalRows")
+                        .HasForeignKey("ExpenseGroupId");
                 });
 #pragma warning restore 612, 618
         }

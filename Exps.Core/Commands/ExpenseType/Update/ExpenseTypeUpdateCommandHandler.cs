@@ -12,7 +12,7 @@ namespace Exps.Core.Commands
 
         public override ExpenseTypeModel FindModel(ExpenseTypeUpdateCommand command)
         {
-            return _context.Find<ExpenseTypeModel>(a => a.ExpenseTypeId == command.ExpenseTypeId);
+            return _context.Find<ExpenseTypeModel>(a => a.Id == command.ExpenseTypeId);
         }
 
         public override ExpenseTypeModel ApplyChanges(ExpenseTypeModel model, ExpenseTypeUpdateCommand command)

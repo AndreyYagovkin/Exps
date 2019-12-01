@@ -8,37 +8,37 @@ namespace Exps.Core.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ExpenseController : ControllerBase
+    public class ExpenseJournalController: ControllerBase
     {
         private readonly IDispatcher _dispatcher;
 
-        public ExpenseController(IDispatcher dispatcher)
+        public ExpenseJournalController(IDispatcher dispatcher)
         {
             _dispatcher = dispatcher;
         }
         
-        public IQueryable<ExpenseView> Get()
+        public IQueryable<JournalView> Get()
         {
-            return _dispatcher.HandleQuery<ExpenseView>();
+            return _dispatcher.HandleQuery<JournalView>();
         }
-
+        
         [HttpPost]
         [Route("Create")]
-        public void Create(ExpenseCreateCommand command)
+        public void Create(ExpenseJournalCreateCommand command)
         {
             _dispatcher.Handle(command);
         }
 
         [HttpPost]
         [Route("Update")]
-        public void Update(ExpenseUpdateCommand command)
+        public void Update(ExpenseJournalUpdateCommand command)
         {
             _dispatcher.Handle(command);
         }
 
         [HttpPost]
         [Route("Delete")]
-        public void Delete(ExpenseDeleteCommand command)
+        public void Delete(ExpenseJournalDeleteCommand command)
         {
             _dispatcher.Handle(command);
         }

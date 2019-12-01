@@ -8,37 +8,34 @@ namespace Exps.Core.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class JournalController: ControllerBase
+    public class ExpenseGroupsController : ControllerBase
     {
         private readonly IDispatcher _dispatcher;
 
-        public JournalController(IDispatcher dispatcher)
+        public ExpenseGroupsController(IDispatcher dispatcher)
         {
             _dispatcher = dispatcher;
         }
         
-        public IQueryable<JournalView> Get()
+        public IQueryable<ExpenseGroupView> Get()
         {
-            return _dispatcher.HandleQuery<JournalView>();
+            return _dispatcher.HandleQuery<ExpenseGroupView>();
         }
-        
+
         [HttpPost]
-        [Route("Create")]
-        public void Create(JournalCreateCommand command)
+        public void Create(ExpenseGroupCreateCommand command)
         {
             _dispatcher.Handle(command);
         }
 
         [HttpPost]
-        [Route("Update")]
-        public void Update(JournalUpdateCommand command)
+        public void Update(ExpenseGroupUpdateCommand command)
         {
             _dispatcher.Handle(command);
         }
 
         [HttpPost]
-        [Route("Delete")]
-        public void Delete(JournalDeleteCommand command)
+        public void Delete(ExpenseGroupDeleteCommand command)
         {
             _dispatcher.Handle(command);
         }

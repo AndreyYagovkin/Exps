@@ -2,15 +2,15 @@
 
 namespace Exps.Core.Commands
 {
-    public class JournalUpdateCommand
+    public class ExpenseJournalUpdateCommand
     {
-        public int JournalId { get; set; }
+        public int ExpenseJournalId { get; set; }
         
         public DateTime Date { get; set; }
 
         public decimal Sum { get; set; }
 
-        public int? ExpenseId { get; set; }
+        public int? ExpenseGroupId { get; set; }
         
         public string Comment { get; set; }    }
 }
