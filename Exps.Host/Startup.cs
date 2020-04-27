@@ -23,8 +23,8 @@ namespace Exps.Host
         {
             services.AddCors();
             services.AddControllers();
-            services.AddEntityFrameworkNpgsql().AddDbContext<ExpsContext>(opt =>
-                opt.UseNpgsql(Configuration.GetConnectionString("ExpsWebApiConection"))
+            services.AddDbContext<ExpsContext>(opt =>
+                opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
             );
         }
 
