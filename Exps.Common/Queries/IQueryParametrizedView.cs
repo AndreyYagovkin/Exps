@@ -1,12 +1,13 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Exps.Common.Queries
 {
-    public interface IQueryParametrizedView<TModel, TParams, TViewModel> : IQueryParametrized<TParams, TViewModel>
-        where TModel : class
+    public interface IQueryParametrizedView<TEntity, in TParams, out TModel> :
+        IQueryParametrized<TParams, TModel>
         
     {
-        IQueryable<TModel> GetQuery(TParams @params);
-        IQueryable<TViewModel> MapModelQuery(IQueryable<TModel> query);
+        IQueryable<TEntity> GetQuery(TParams @params);
+        IEnumerable<TModel> MapModelQuery(IQueryable<TEntity> query);
     }
 }

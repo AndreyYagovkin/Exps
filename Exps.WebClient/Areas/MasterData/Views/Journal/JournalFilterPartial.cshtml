@@ -1,0 +1,8 @@
+﻿@model Exps.WebClient.Areas.Journal.Models.JournalFilterParams
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.EditorFor(model => model.Date)
+    <input type="submit" id="btnFilter" value="Filter" />
+}

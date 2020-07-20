@@ -1,38 +1,38 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Exps.Common.Context;
+using System.Linq;
 
 namespace Exps.Common.Queries
 {
-    public class QueryParametrizedBasic<TModel, TParams, TViewModel> 
-        : QueryParametrized<TParams, TViewModel>, IQueryParametrizedView<TModel, TParams, TViewModel> 
-        where TModel : class
+    public class QueryParametrizedView<TEntity, TParams, TModel> 
+        : QueryParametrized<TParams, TModel>, 
+        IQueryParametrizedView<TEntity, TParams, TModel> where TEntity : class
     {
-        private readonly IConfigurationProvider _mapperConfig;
+        private readonly IMapper _mapper;
         
-        public QueryParametrizedBasic(IDataContext context, 
-            IConfigurationProvider mapperConfig) : base(context)
+        public QueryParametrizedView(IDataContext context, 
+            IMapper mapper) : base(context)
         {
-            _mapperConfig = mapperConfig;
+            _mapper = mapper;
         }
 
-        public override IQueryable<TViewModel> Execute(TParams @params)
+        public override IEnumerable<TModel> Execute(TParams @params)
         {
             var modelQuery = GetQuery(@params);
             var resultQuery = MapModelQuery(modelQuery);
             return resultQuery;
         }
 
-        public virtual IQueryable<TModel> GetQuery(TParams parameters)
+        public virtual IQueryable<TEntity> GetQuery(TParams parameters)
         {
-            var query = _context.Query<TModel>();
+            var query = _context.Query<TEntity>();
             return query;
         }
 
-        public virtual IQueryable<TViewModel> MapModelQuery(IQueryable<TModel> query)
+        public virtual IEnumerable<TModel> MapModelQuery(IQueryable<TEntity> query)
         {
-            var mappedQuery = query.ProjectTo<TViewModel>(_mapperConfig);
+            var mappedQuery = _mapper.ProjectTo<TModel>(query);
             return mappedQuery;
         }
     }

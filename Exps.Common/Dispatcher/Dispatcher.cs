@@ -1,47 +1,52 @@
-﻿using System;
+﻿using Exps.Common.Commands;
+using Exps.Common.Exceptions;
+using Exps.Common.Queries;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Autofac;
-using Exps.Common.Exceptions;
-using Exps.Common.Commands;
-using Exps.Common.Queries;
 
 namespace Exps.Common.Dispatcher
 {
+    /// <summary> Query/command resolver </summary>
     public class Dispatcher : IDispatcher
     {
-        private readonly IComponentContext _container;
+        /// <summary> Collection of registered services </summary>
+        private readonly IServiceCollection _services;
 
-        public Dispatcher(IComponentContext container)
+        /// <summary> Query/command resolver </summary>
+        /// <param name="services"> Collection of registered services </param>
+        public Dispatcher(IServiceCollection services)
         {
-            _container = container;
+            _services = services;
         }
 
         public void Handle<TCommand>(TCommand command)
         {
-            var handler = Resolve<IHandlerCommand<TCommand>>();
+            var handler = Resolve<IHandler<TCommand>>();
 
             if (handler == null)
                 throw new Exception($"Handler for command {typeof(TCommand)} not found.");
 
-            handler.Execute(command);
-        }
-        
-        public IQueryable<TModel> HandleQuery<TModel>()
-        {
-            var query = Resolve<IQuery<TModel>>();
-            
-            if (query == null)
-                throw new Exception($"Handler for query {typeof(TModel)} not found.");
-            
-            return query.Execute();
+            handler.Handle(command);
         }
 
-        private TType Resolve<TType>(ILifetimeScope scope = null) where TType : class
+        public IEnumerable<TView> HandleQuery<TEntity, TParams, TView>(TParams @params) 
+            where TEntity : class
         {
-            IEnumerable<TType> handlers = (scope == null)
-                ? _container.Resolve<IEnumerable<TType>>()
-                : scope.Resolve<IEnumerable<TType>>();
+            var query = Resolve<IQueryParametrizedView<TEntity, TParams, TView>>();
+            
+            if (query == null)
+                throw new Exception($"Handler for query {typeof(TEntity)} not found.");
+
+            return query.Execute(@params);
+        }
+
+        private TType Resolve<TType>() where TType : class
+        {
+            var provider = _services.BuildServiceProvider();
+            
+            var handlers = provider.GetServices<TType>();
 
             if (!handlers.Any())
                 throw new HandlerNotFoundException(typeof(TType));
@@ -79,6 +84,7 @@ namespace Exps.Common.Dispatcher
                 else
                     resolved = h;
             }
+
             return resolved;
         }
     }

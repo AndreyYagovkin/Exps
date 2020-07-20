@@ -1,9 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace Exps.Common.Queries
 {
     public interface IQuery<out T>
     {
-        IQueryable<T> Execute();
+        IEnumerable<T> Execute();
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Exps.Common.Commands
 {
-    public abstract class HandlerDeleteBase<TModel, TCommand> : IHandlerCommand<TCommand>
+    public abstract class HandlerDeleteBase<TModel, TCommand> : IHandler<TCommand>
         where TModel : class
     {
         protected readonly IDataContext _context;
@@ -12,7 +12,7 @@ namespace Exps.Common.Commands
             _context = context;
         }
 
-        public virtual void Execute(TCommand command)
+        public virtual void Handle(TCommand command)
         {
             var model = FindModel(command);
 

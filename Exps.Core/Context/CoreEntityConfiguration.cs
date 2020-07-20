@@ -1,5 +1,5 @@
 ﻿using Exps.Common.Context;
-using Exps.Core.Models;
+using Exps.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Exps.Core.Context
@@ -8,32 +8,15 @@ namespace Exps.Core.Context
     {
         public void AddConfiguration(ModelBuilder modelBuilder)
         {
-            //ExpenseTypes
-            modelBuilder.Entity<ExpenseTypeModel>()
-                .ToTable("ExpenseType")
+            //Journal
+            modelBuilder.Entity<Journal>()
+                .ToTable("Journal")
                 .HasKey(x => x.Id)
-                .HasName("PK_ExpenseTypeId");
+                .HasName("PK_JournalId");
 
-            modelBuilder.Entity<ExpenseTypeModel>()
-                .HasMany(x => x.ExpenseGroups)
-                .WithOne(x => x.ExpenseType);
-
-            //ExpenseGroups
-            modelBuilder.Entity<ExpenseGroupModel>()
-                .ToTable("ExpenseGroup")
-                .HasKey(x => x.Id)
-                .HasName("PK_ExpenseGroupId");
-
-            modelBuilder.Entity<ExpenseGroupModel>()
-                .HasMany(x => x.ExpenseJournalRows)
-                .WithOne(x => x.ExpenseGroup);
-
-            //ExpenseJournal
-            modelBuilder.Entity<ExpenseJournalModel>()
-                .ToTable("ExpenseJournal")
-                .HasKey(x => x.Id)
-                .HasName("PK_ExpenseJournalId");
-
+            modelBuilder.Entity<Journal>()
+                .Property(x => x.Sum)
+                .HasColumnType("real");
         }
     }
 }

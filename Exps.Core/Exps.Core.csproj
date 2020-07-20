@@ -5,17 +5,33 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Commands\**" />
+    <Compile Remove="Controllers\**" />
+    <Compile Remove="Logic\ExpenseGroup\**" />
+    <Compile Remove="Logic\ExpenseType\**" />
+    <Compile Remove="Views\**" />
+    <EmbeddedResource Remove="Commands\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <EmbeddedResource Remove="Logic\ExpenseGroup\**" />
+    <EmbeddedResource Remove="Logic\ExpenseType\**" />
+    <EmbeddedResource Remove="Views\**" />
+    <None Remove="Commands\**" />
+    <None Remove="Controllers\**" />
+    <None Remove="Logic\ExpenseGroup\**" />
+    <None Remove="Logic\ExpenseType\**" />
+    <None Remove="Views\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Exps.Common\Exps.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Journal" />
   </ItemGroup>
 
 </Project>

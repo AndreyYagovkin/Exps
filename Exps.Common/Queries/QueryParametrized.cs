@@ -1,17 +1,17 @@
-﻿using System.Linq;
-using Exps.Common.Context;
+﻿using Exps.Common.Context;
+using System.Collections.Generic;
 
 namespace Exps.Common.Queries
 {
     public abstract class QueryParametrized<TParams, TResult> : IQueryParametrized<TParams, TResult>
     {
-        readonly protected IDataContext _context;
+        protected readonly IDataContext _context;
 
-        protected QueryParametrized(IDataContext dataContext)
+        protected QueryParametrized(IDataContext context)
         {
-            _context = dataContext;
+            _context = context;
         }
 
-        public abstract IQueryable<TResult> Execute(TParams @params);
+        public abstract IEnumerable<TResult> Execute(TParams @params);
     }
 }

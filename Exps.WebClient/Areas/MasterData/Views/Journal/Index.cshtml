@@ -1,0 +1,45 @@
+﻿@using Exps.WebClient.Areas.Journal.Models
+@model Exps.WebClient.Areas.Journal.Models.JournalModel
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>Expenses daily journal</h2>
+@{
+    var paramModel = new JournalFilterParams {Date = ViewBag.JournalFilterParams.Date};
+    @Html.Partial("JournalFilterPartial", paramModel)
+}
+
+@using (Html.BeginForm("Add", "Journal", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.EditorFor(model => model.AddRecord.Date)
+    @Html.EditorFor(model => model.AddRecord.Sum)
+    <input type="submit" id="btnAdd" value="Add" />
+}
+
+<table class="table" width="30%">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Date</th>
+            <th scope="col">Sum</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model.Records)
+        {
+            <tr scope="row">
+                <td>@m.Id</td>
+                <td>@m.Date</td>
+                <td>@m.Sum</td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = @m.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

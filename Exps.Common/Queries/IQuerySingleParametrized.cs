@@ -1,7 +1,7 @@
 ﻿namespace Exps.Common.Queries
 {
-    public interface IQuerySingleParametrized<in TParam, out T>
+    public interface IQuerySingleParametrized<in TParam, out TModel>
     {
-        T Execute(TParam @params);
+        TModel Execute(TParam @params);
     }
 }

@@ -1,39 +1,38 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Exps.Common.Context;
 using AutoMapper;
 
 namespace Exps.Common.Queries
 {
-    public abstract class QueryBase<TModel, TViewModel> : IQuery<TViewModel>
-            where TModel : class
+    public abstract class QueryBase<TEntity, TModel> : IQuery<TModel> where TEntity : class
     {
-        protected readonly IDataContext _context;
+        private readonly IDataContext _context;
         private readonly IMapper _mapper;
 
-        public QueryBase(IDataContext context,
-            IMapper mapper
-            )
+        protected QueryBase(IDataContext context,
+            IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public virtual IQueryable<TViewModel> Execute()
+        public virtual IEnumerable<TModel> Execute()
         {
             var modelQuery = GetQuery();
             var resultQuery = MapModelQuery(modelQuery);
             return resultQuery;
         }
 
-        public virtual IQueryable<TModel> GetQuery()
+        public virtual IQueryable<TEntity> GetQuery()
         {
-            var q = _context.Query<TModel>();
+            var q = _context.Query<TEntity>();
             return q;
         }
 
-        public virtual IQueryable<TViewModel> MapModelQuery(IQueryable<TModel> query)
+        public virtual IQueryable<TModel> MapModelQuery(IQueryable<TEntity> query)
         {
-            var mappedQuery = _mapper.ProjectTo<TViewModel>(query);
+            var mappedQuery = _mapper.ProjectTo<TModel>(query);
             return mappedQuery;
         }
     }
