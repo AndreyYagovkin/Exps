@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exps.Database.Migrations
 {
     [DbContext(typeof(ExpsContext))]
-    [Migration("20200629105153_Initial")]
-    partial class Initial
+    [Migration("20200720200247_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

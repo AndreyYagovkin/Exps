@@ -3,19 +3,18 @@ using Exps.Common.Commands;
 using Exps.Common.Context;
 using Exps.Common.Dispatcher;
 using Exps.Common.Queries;
+using Exps.Common.Services;
 using Exps.Core.Logic.Journal;
 using Exps.Database.Context;
 using Exps.WebClient.Areas.Journal.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Exps.Common.Services;
 
 namespace Exps.WebClient
 {
@@ -33,9 +32,7 @@ namespace Exps.WebClient
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<ExpsContext>(opt =>
-                opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
-            );
+            services.AddDbContext<ExpsContext>();
 
             #region Types registration
             services.Scan(
